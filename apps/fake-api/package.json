@@ -1,9 +1,10 @@
 {
   "name": "fake-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "license": "MIT",
   "scripts": {
+    "start": "node server.js",
     "dev": "json-server --watch db.json"
   },
   "dependencies": {
