@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Skol",
+      "manufactureDate": "Tue Dec 14 2018 02:00",
+      "perishable": true,
+      "expirationDate": "Tue Dec 31 2019 15:00",
+      "price": "R$ 50,00"
+    },
+    {
+      "id": 2,
+      "name": "Brama",
+      "manufactureDate": "Tue Dec 14 2017 02:00",
+      "perishable": true,
+      "expirationDate": "Tue Dec 20 2018 15:00",
+      "price": "R$ 50,00"
+    },
+    {
+      "id": 3,
+      "name": "Trigo",
+      "manufactureDate": "Tue Dec 14 2018 02:00",
+      "perishable": false,
+      "expirationDate": "",
+      "price": "R$ 50,00"
+    }
+  ]
+}
