@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "start:fake-api": "turbo run start",
+    "build:web": "turbo run build --filter=web",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
