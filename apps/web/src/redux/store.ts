@@ -1,12 +1,25 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
-import thunk from "redux-thunk";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import createSagaMiddleware from "redux-saga";
 
-import counterReducer from "./reducers/counterSlice";
+import productsReducer from "./reducers/productsSlice";
+
+import rootSaga from "./sagas";
+
+let sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
 
 const reducers = combineReducers({
-  counter: counterReducer,
+  products: productsReducer,
 });
 
 const persistConfig = {
@@ -18,8 +31,16 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [thunk],
+  devTools: true,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(middleware),
 });
+
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
