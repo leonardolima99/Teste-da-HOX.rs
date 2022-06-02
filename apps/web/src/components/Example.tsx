@@ -11,9 +11,9 @@ export function Example() {
 
   function withFilter(doIt: boolean) {
     if (doIt) {
-      setUrl("http://localhost:3000/products?_sort=name");
+      setUrl("http://localhost:3001/products?_sort=name");
     } else {
-      setUrl("http://localhost:3000/products");
+      setUrl("http://localhost:3001/products");
     }
   }
 
