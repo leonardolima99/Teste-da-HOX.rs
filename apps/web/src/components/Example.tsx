@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { sagaActions } from "../redux/sagas/sagaActions";
 
 export function Example() {
-  const [url, setUrl] = useState<string>("http://localhost:3000/products");
+  const [url, setUrl] = useState<string>("http://localhost:3001/products");
 
   const products = useSelector((state: RootState) => state.products.value);
   const dispatch = useDispatch();
 
   function withFilter(doIt: boolean) {
     if (doIt) {
-      setUrl("http://localhost:3000/products?_sort=name");
+      setUrl("http://localhost:3001/products?_sort=name");
     } else {
-      setUrl("http://localhost:3000/products");
+      setUrl("http://localhost:3001/products");
     }
   }
 
