@@ -1,0 +1,34 @@
+services:
+  fake-api:
+    container_name: fake-api
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./apps/fake-api
+    environment:
+      - NODE_ENV=development
+      - PORT=${PORT_API}
+    ports:
+      - "${PORT_API}:${PORT_API}"
+    volumes:
+      - ./apps/fake-api:/usr/src/app
+      - /home/node/app/node_modules
+    command: yarn start
+
+  web:
+    container_name: web
+    restart: always
+    depends_on:
+      - fake-api
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./apps/web
+    environment:
+      - VITE_ENDPOINT_API=http://fake-api:${PORT_API}
+    ports:
+      - "${PORT_WEB}:${PORT_WEB}"
+      - 3030:3030
+    volumes:
+      - ./apps/web:/usr/src/app
+      - /usr/src/app/node_modules
+    command: yarn dev --force
