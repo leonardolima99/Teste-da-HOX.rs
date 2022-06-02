@@ -31,4 +31,4 @@ services:
     volumes:
       - ./apps/web:/usr/src/app
       - /usr/src/app/node_modules
-    command: yarn dev --force
+    command: yarn dev
