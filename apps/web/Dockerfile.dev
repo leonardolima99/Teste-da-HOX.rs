@@ -2,7 +2,7 @@ FROM node:14.18.1-alpine
 
 #RUN yarn config set unsafe-perm true
 
-RUN yarn global add vite 
+RUN yarn global add vite sass
 
 USER root
 WORKDIR /home/node/app

@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { RootState } from "../redux/store";
+import { RootState } from "@/redux/store";
 import { useSelector, useDispatch } from "react-redux";
-import { sagaActions } from "../redux/sagas/sagaActions";
+import { sagaActions } from "@/redux/sagas/sagaActions";
+
+import styles from "@/styles/form.module.scss";
+
+const { VITE_API_URL: api_url } = import.meta.env;
 
 export function Example() {
-  const [url, setUrl] = useState<string>("http://localhost:3001/products");
+  const [url, setUrl] = useState<string>(`${api_url}/products`);
 
   const products = useSelector((state: RootState) => state.products.value);
   const dispatch = useDispatch();
 
   function withFilter(doIt: boolean) {
     if (doIt) {
-      setUrl("http://localhost:3001/products?_sort=name");
+      setUrl(`${api_url}/products?_sort=name`);
     } else {
-      setUrl("http://localhost:3001/products");
+      setUrl(`${api_url}/products`);
     }
   }
 
@@ -26,6 +30,7 @@ export function Example() {
         </div>
       ))}
       <button
+        className={styles.button}
         aria-label="Apply filter"
         onClick={() => {
           withFilter(true);
@@ -34,6 +39,7 @@ export function Example() {
         Com filtro
       </button>
       <button
+        className={styles.button}
         aria-label="Remove filter"
         onClick={() => {
           withFilter(false);
@@ -43,6 +49,7 @@ export function Example() {
       </button>
 
       <button
+        className={styles.button}
         aria-label="Get all products"
         onClick={() =>
           dispatch({
