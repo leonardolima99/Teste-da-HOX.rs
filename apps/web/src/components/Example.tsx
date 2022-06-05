@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { sagaActions } from "@/redux/sagas/sagaActions";
 
 import styles from "@/styles/form.module.scss";
+import { Button } from "./Button";
 
 const { VITE_API_URL: api_url } = import.meta.env;
 
@@ -29,28 +30,14 @@ export function Example() {
           {product.name} {product.price}
         </div>
       ))}
-      <button
-        className={styles.button}
-        aria-label="Apply filter"
-        onClick={() => {
-          withFilter(true);
-        }}
-      >
+      <Button ariaLabel="Apply filter" onClick={() => withFilter(true)}>
         Com filtro
-      </button>
-      <button
-        className={styles.button}
-        aria-label="Remove filter"
-        onClick={() => {
-          withFilter(false);
-        }}
-      >
+      </Button>
+      <Button ariaLabel="Remove filter" onClick={() => withFilter(false)}>
         Sem filtro
-      </button>
-
-      <button
-        className={styles.button}
-        aria-label="Get all products"
+      </Button>
+      <Button
+        ariaLabel="Search"
         onClick={() =>
           dispatch({
             type: sagaActions.FETCH_PRODUCTS_SAGA,
@@ -59,7 +46,7 @@ export function Example() {
         }
       >
         Buscar
-      </button>
+      </Button>
     </div>
   );
 }
