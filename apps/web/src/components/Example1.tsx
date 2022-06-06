@@ -8,7 +8,7 @@ import { Input } from "./Input";
 
 const { VITE_API_URL: api_url } = import.meta.env;
 
-export function Example() {
+export function Example1() {
   const [url, setUrl] = useState<string>(`${api_url}/products`);
 
   const products = useSelector((state: RootState) => state.products.value);
@@ -24,15 +24,11 @@ export function Example() {
 
   return (
     <div>
-      <span>Contador</span>
-      {/* {products.map((product) => (
-        <div key={product.name + "_" + product.id}>
-          {product.name} {product.price}
-        </div>
-      ))} */}
+      <h2>Área restrita</h2>
       <form>
         <div>
-          <Input type="text" ariaLabel="Username" />
+          <Input type="text" ariaLabel="Username" placeholder="Username" />
+          <Input type="password" ariaLabel="Password" placeholder="Password" />
         </div>
         <Button
           type="button"
@@ -42,32 +38,6 @@ export function Example() {
           Acessar
         </Button>
       </form>
-      <Button
-        type="button"
-        ariaLabel="Apply filter"
-        onClick={() => withFilter(true)}
-      >
-        Com filtro
-      </Button>
-      <Button
-        type="button"
-        ariaLabel="Remove filter"
-        onClick={() => withFilter(false)}
-      >
-        Sem filtro
-      </Button>
-      <Button
-        type="button"
-        ariaLabel="Search"
-        onClick={() =>
-          dispatch({
-            type: sagaActions.FETCH_PRODUCTS_SAGA,
-            payload: url,
-          })
-        }
-      >
-        Buscar
-      </Button>
     </div>
   );
 }
