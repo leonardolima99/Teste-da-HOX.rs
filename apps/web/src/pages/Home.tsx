@@ -5,12 +5,11 @@ import { Input } from "@/components/Input";
 
 import styles from "../styles/form.module.scss";
 
-import { toast, Id } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { sagaActions } from "@/redux/sagas/sagaActions";
 
-export function SignIn() {
+export function Home() {
   const [email, setEmail] = useState<string>("teste@mail.com");
   const [password, setPassword] = useState<string>("1234");
 
@@ -19,14 +18,19 @@ export function SignIn() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user.isAuth) navigate("/");
-  }, [user]);
+  /*   useEffect(() => {
+    if (user.isAuth) navigate("/1");
+  }, [user]); */
 
   return (
     <div>
-      <h2>Área restrita</h2>
-      <form
+      <h3>
+        Olá,{" "}
+        {user.email.charAt(0).toUpperCase() +
+          user.email.substring(1, user.email.indexOf("@"))}
+      </h3>
+
+      {/* <form
         onSubmit={(e) => {
           e.preventDefault();
           dispatch({
@@ -69,7 +73,7 @@ export function SignIn() {
         <button className={styles.button} aria-label="Acessar" type="submit">
           Acessar
         </button>
-      </form>
+      </form> */}
     </div>
   );
 }

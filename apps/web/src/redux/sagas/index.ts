@@ -4,13 +4,21 @@ import axios, { AxiosResponse } from "axios";
 import { toast, Id } from "react-toastify";
 
 import { getAllProducts } from "../reducers/productsSlice";
+import { handleSignIn, handleUserUnauthorized } from "../reducers/userSlice";
 import { sagaActions } from "./sagaActions";
 
 type DataApi = { url: string; method?: string; data?: [number] };
+type UserData = { email: string; password: string };
+type UserAction = {
+  type: string;
+  payload: UserData;
+};
 
 let result: AxiosResponse<any, any>;
 
 const toastId = { current: 0 as Id };
+
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 let callAPI = async ({ url, method = "GET", data }: DataApi) => {
   toastId.current = toast.loading("Buscando dados...");
@@ -20,6 +28,60 @@ let callAPI = async ({ url, method = "GET", data }: DataApi) => {
     data: data || undefined,
   });
 };
+
+function userAuth({ email, password }: UserData) {
+  const toastId = { current: "" as Id };
+  toastId.current = toast.loading("Carregando...");
+
+  if (
+    !email ||
+    !password ||
+    email !== "teste@mail.com" ||
+    password !== "1234"
+  ) {
+    console.log(123);
+
+    setTimeout(() => {
+      toast.update(toastId.current, {
+        type: toast.TYPE.ERROR,
+        isLoading: false,
+        delay: 100,
+        autoClose: 5000,
+        closeOnClick: true,
+        closeButton: true,
+        render: "Usuário ou senha inválidos.",
+      });
+    }, 500);
+    throw false;
+  } else {
+    setTimeout(() => {
+      toast.update(toastId.current, {
+        type: toast.TYPE.SUCCESS,
+        isLoading: false,
+        autoClose: 5000,
+        closeOnClick: true,
+        closeButton: true,
+        render: "Acesso permitido.",
+      });
+      return true;
+    }, 2000);
+  }
+}
+
+export function* userAuthentication(action: UserAction) {
+  try {
+    yield call(userAuth, {
+      email: action.payload.email,
+      password: action.payload.password,
+    });
+
+    yield delay(2000);
+
+    yield put(handleSignIn({ email: action.payload.email, isAuth: true }));
+  } catch (e) {
+    yield put(handleUserUnauthorized({ email: "", isAuth: false }));
+  }
+}
 
 export function* fetchProductsSaga(action: { type: string; payload: string }) {
   try {
@@ -55,4 +117,5 @@ export function* fetchProductsSaga(action: { type: string; payload: string }) {
 
 export default function* rootSaga(): Generator<any> {
   yield takeEvery(sagaActions.FETCH_PRODUCTS_SAGA, fetchProductsSaga);
+  yield takeEvery(sagaActions.USER_AUTHENTICATION, userAuthentication);
 }

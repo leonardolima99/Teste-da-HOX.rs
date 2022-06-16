@@ -26,10 +26,6 @@ export function Example1() {
     <div>
       <h2>Área restrita</h2>
       <form>
-        <div>
-          <Input type="text" ariaLabel="Username" placeholder="Username" />
-          <Input type="password" ariaLabel="Password" placeholder="Password" />
-        </div>
         <Button
           type="button"
           ariaLabel="Apply filter"

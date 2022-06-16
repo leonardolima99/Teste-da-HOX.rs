@@ -3,14 +3,15 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 import { SignIn } from "@/pages/SignIn";
-import { Example } from "@/components/Example";
+import { Home } from "@/pages/Home";
 
 function App() {
   return (
     <div className="App App-header">
       <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/1" element={<Example />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>
     </div>
   );

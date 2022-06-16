@@ -12,6 +12,7 @@ import {
 import createSagaMiddleware from "redux-saga";
 
 import productsReducer from "./reducers/productsSlice";
+import userReducer from "./reducers/userSlice";
 
 import rootSaga from "./sagas";
 
@@ -20,6 +21,7 @@ const middleware = [sagaMiddleware];
 
 const reducers = combineReducers({
   products: productsReducer,
+  user: userReducer,
 });
 
 const persistConfig = {

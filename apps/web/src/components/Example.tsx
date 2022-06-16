@@ -42,22 +42,6 @@ export function Example() {
           {product.name} {product.price}
         </div>
       ))}
-      <form className={styles.form}>
-        <div></div>
-        <Input
-          placeholder="Username"
-          type="text"
-          ariaLabel="Username"
-          onChange={() => {}}
-        />
-        <Button
-          type="button"
-          ariaLabel="Apply filter"
-          onClick={() => withFilter(true)}
-        >
-          Acessar
-        </Button>
-      </form>
       <Button
         type="button"
         ariaLabel="Apply filter"
