@@ -2,17 +2,17 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
-import { Example1 } from "@/components/Example1";
+import { SignIn } from "@/pages/SignIn";
 import { Example } from "@/components/Example";
 
 function App() {
   return (
-    <>
+    <div className="App App-header">
       <Routes>
-        <Route path="/" element={<Example1 />} />
+        <Route path="/" element={<SignIn />} />
         <Route path="/1" element={<Example />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
