@@ -1,14 +1,18 @@
-import logo from "./logo.svg";
 import "./App.css";
+
+import { Routes, Route } from "react-router-dom";
+
 import { Example1 } from "@/components/Example1";
+import { Example } from "@/components/Example";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Example1 />
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Example1 />} />
+        <Route path="/1" element={<Example />} />
+      </Routes>
+    </>
   );
 }
 
