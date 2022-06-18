@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "../styles/form.module.scss";
 
-import { toast, Id } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch } from "react-redux";
 import { sagaActions } from "@/redux/sagas/sagaActions";
 
 export function SignIn() {
   const [email, setEmail] = useState<string>("teste@mail.com");
   const [password, setPassword] = useState<string>("1234");
 
-  const user = useSelector((state: RootState) => state.user.value);
   const dispatch = useDispatch();
 
   return (
@@ -23,7 +20,6 @@ export function SignIn() {
             type: sagaActions.USER_AUTHENTICATION,
             payload: { email, password },
           });
-          console.log(user);
         }}
       >
         <div>

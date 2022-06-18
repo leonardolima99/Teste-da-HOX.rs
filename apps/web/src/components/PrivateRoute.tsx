@@ -13,7 +13,6 @@ export function PrivateRoute({
   mustNotBeAuthenticated = false,
 }: PrivateRouteProps) {
   const user = useSelector((state: RootState) => state.user.value);
-  const location = useLocation();
 
   if (mustNotBeAuthenticated && user.isAuth) return <Navigate to="/" />;
 
