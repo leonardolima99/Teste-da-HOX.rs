@@ -34,7 +34,6 @@ export function Home() {
         <button
           className={styles.button}
           onClick={() => {
-            toast.success("Você deslogou.");
             dispatch({ type: sagaActions.USER_SIGN_OUT });
             navigate("/signin");
           }}

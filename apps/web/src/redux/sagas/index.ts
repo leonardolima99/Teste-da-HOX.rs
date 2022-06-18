@@ -86,6 +86,8 @@ export function* userAuthentication(action: UserAction) {
 export function* userSignOut() {
   try {
     yield put(handleUserUnauthorized({ email: "", isAuth: false }));
+
+    toast.success("Você deslogou.");
   } catch (e) {
     throw new Error("Não pôde deslogar.");
   }
