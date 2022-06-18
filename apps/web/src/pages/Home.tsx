@@ -8,6 +8,7 @@ import styles from "../styles/form.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { sagaActions } from "@/redux/sagas/sagaActions";
+import { toast } from "react-toastify";
 
 export function Home() {
   const [email, setEmail] = useState<string>("teste@mail.com");
@@ -32,7 +33,11 @@ export function Home() {
         </h3>
         <button
           className={styles.button}
-          onClick={() => dispatch({ type: sagaActions.USER_SIGN_OUT })}
+          onClick={() => {
+            toast.success("Você deslogou.");
+            dispatch({ type: sagaActions.USER_SIGN_OUT });
+            navigate("/signin");
+          }}
         >
           Deslogar
         </button>
