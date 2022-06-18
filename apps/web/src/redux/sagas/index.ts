@@ -83,6 +83,14 @@ export function* userAuthentication(action: UserAction) {
   }
 }
 
+export function* userSignOut() {
+  try {
+    yield put(handleUserUnauthorized({ email: "", isAuth: false }));
+  } catch (e) {
+    throw new Error("Não pôde deslogar.");
+  }
+}
+
 export function* fetchProductsSaga(action: { type: string; payload: string }) {
   try {
     yield call(callAPI, {
@@ -118,4 +126,5 @@ export function* fetchProductsSaga(action: { type: string; payload: string }) {
 export default function* rootSaga(): Generator<any> {
   yield takeEvery(sagaActions.FETCH_PRODUCTS_SAGA, fetchProductsSaga);
   yield takeEvery(sagaActions.USER_AUTHENTICATION, userAuthentication);
+  yield takeEvery(sagaActions.USER_SIGN_OUT, userSignOut);
 }

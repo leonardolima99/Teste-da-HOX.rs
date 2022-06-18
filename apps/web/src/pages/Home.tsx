@@ -24,11 +24,19 @@ export function Home() {
 
   return (
     <div>
-      <h3>
-        Olá,{" "}
-        {user.email.charAt(0).toUpperCase() +
-          user.email.substring(1, user.email.indexOf("@"))}
-      </h3>
+      <nav>
+        <h3>
+          Olá,{" "}
+          {user.email.charAt(0).toUpperCase() +
+            user.email.substring(1, user.email.indexOf("@"))}
+        </h3>
+        <button
+          className={styles.button}
+          onClick={() => dispatch({ type: sagaActions.USER_SIGN_OUT })}
+        >
+          Deslogar
+        </button>
+      </nav>
 
       {/* <form
         onSubmit={(e) => {
