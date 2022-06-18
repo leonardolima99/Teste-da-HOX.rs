@@ -24,7 +24,7 @@ export function Home() {
 
   return (
     <div>
-      <nav>
+      <nav className={styles.navBar}>
         <h3>
           Olá,{" "}
           {user.email.charAt(0).toUpperCase() +

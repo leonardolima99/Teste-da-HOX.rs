@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
-
 import styles from "../styles/form.module.scss";
 
 import { toast, Id } from "react-toastify";
@@ -16,12 +12,6 @@ export function SignIn() {
 
   const user = useSelector((state: RootState) => state.user.value);
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user.isAuth) navigate("/");
-  }, [user]);
 
   return (
     <div>
