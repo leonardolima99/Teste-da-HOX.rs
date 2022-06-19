@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import global from "../styles/global.module.scss";
 import styles from "../styles/form.module.scss";
 
 import { useDispatch } from "react-redux";
@@ -11,9 +13,10 @@ export function SignIn() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={global.signin}>
       <h2>Área restrita</h2>
       <form
+        className={styles.form}
         onSubmit={(e) => {
           e.preventDefault();
           dispatch({

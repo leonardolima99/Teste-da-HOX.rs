@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 
-import styles from "../styles/form.module.scss";
+import global from "../styles/global.module.scss";
+import styles from "../styles/navbar.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { sagaActions } from "@/redux/sagas/sagaActions";
-import { toast } from "react-toastify";
 
 export function Home() {
   const [email, setEmail] = useState<string>("teste@mail.com");
@@ -24,8 +24,8 @@ export function Home() {
   }, [user]); */
 
   return (
-    <div>
-      <nav className={styles.navBar}>
+    <div className={global.page}>
+      <nav className={styles.navbar}>
         <h3>
           Olá,{" "}
           {user.email.charAt(0).toUpperCase() +
@@ -38,7 +38,22 @@ export function Home() {
             navigate("/signin");
           }}
         >
-          Deslogar
+          <span className={styles.buttonText}>Logout</span>{" "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            enable-background="new 0 0 24 24"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#DB4437"
+          >
+            <g>
+              <path d="M0,0h24v24H0V0z" fill="none" />
+            </g>
+            <g>
+              <path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z" />
+            </g>
+          </svg>
         </button>
       </nav>
 

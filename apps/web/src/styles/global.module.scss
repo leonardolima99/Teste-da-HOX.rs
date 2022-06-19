@@ -1,0 +1,24 @@
+.page {
+  background-color: #f0f7ee;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #293241;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.signin {
+  background-color: #f0f7ee;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25rem;
+  color: #293241;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}

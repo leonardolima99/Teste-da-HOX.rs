@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  padding: 0 2rem;
+  max-width: 70rem;
+  height: 6rem;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: space-between;
+
+  .button {
+    padding: 0.5rem;
+    height: 3rem;
+    border: 0.125rem solid #db4437;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+
+    .button-text {
+      color: #db4437;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0.5rem 0;
+      transition: all 0.4s ease;
+    }
+
+    svg {
+      transition: all 0.4s ease;
+    }
+
+    &:hover {
+      background-color: #db4437;
+
+      .button-text {
+        color: #f9f9f9;
+      }
+
+      svg {
+        fill: #f9f9f9;
+      }
+    }
+  }
+}
