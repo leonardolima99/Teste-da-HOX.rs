@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import global from "../styles/global.module.scss";
@@ -9,16 +9,53 @@ import { RootState } from "@/redux/store";
 import { sagaActions } from "@/redux/sagas/sagaActions";
 import { Button } from "@/components/Button";
 import { ExampleTable } from "@/components/ExampleTable";
+import axios from "axios";
 
 const { VITE_API_URL: api_url } = import.meta.env; // Variable Environment
 
 export function Home() {
   const [url, setUrl] = useState<string>(`${api_url}/products`);
+  const [data, setData] = useState([]);
 
   const user = useSelector((state: RootState) => state.user.value);
   const products = useSelector((state: RootState) => state.products.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Nome",
+        accessor: "name",
+      },
+      {
+        Header: "Fabricação",
+        accessor: "manufactureDate",
+      },
+      {
+        Header: "Validade",
+        accessor: "expirationDate",
+      },
+      {
+        Header: "Preço",
+        accessor: "price",
+      },
+      {
+        Header: "Ações",
+        accessor: "actions",
+      },
+    ],
+    []
+  );
+
+  // Using useEffect to call the API once mounted and set the data
+  useEffect(() => {
+    (async () => {
+      /* const result = await axios(url);
+      console.log(result.data); */
+      /* setData(products); */
+    })();
+  }, []);
 
   useEffect(() => {
     dispatch({ type: sagaActions.FETCH_PRODUCTS_SAGA, payload: url });
@@ -60,7 +97,8 @@ export function Home() {
         </nav>
       </header>
       <main>
-        <ExampleTable />
+        <h4 className={global.title}>Lista de produtos</h4>
+        <ExampleTable columns={columns} data={products} />
       </main>
       {/* <main>
         <h4>Produtos</h4>
