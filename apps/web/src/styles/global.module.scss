@@ -89,6 +89,11 @@ table {
   margin: 1rem 0;
 }
 
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 780px) {
   tbody tr {
     width: 100%;

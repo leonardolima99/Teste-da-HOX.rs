@@ -56,7 +56,11 @@ export function SignIn() {
               />
             </div>
           </div>
-          <button className={styles.button} aria-label="Acessar" type="submit">
+          <button
+            className={styles.button + " " + styles.large}
+            aria-label="Acessar"
+            type="submit"
+          >
             Acessar
           </button>
         </form>

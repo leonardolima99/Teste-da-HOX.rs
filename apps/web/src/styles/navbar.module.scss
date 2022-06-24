@@ -40,3 +40,74 @@
     }
   }
 }
+
+div.dropdown-menu {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+button.btn-user {
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 1.5rem;
+  background-color: silver;
+  box-shadow: 0 2px 2px 0px hsl(0, 0%, 60%);
+  cursor: pointer;
+
+  svg {
+    stroke: #333;
+  }
+}
+
+div[role="menu"] {
+  background-color: #f0f7ee;
+  border: 0.125rem solid silver;
+  border-radius: 0.5rem;
+  width: 10rem;
+  margin-top: 3.5rem;
+  padding: 1rem 0.5rem 0.5rem;
+  box-shadow: 0 2px 8px 0 silver;
+
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+
+  a.btn-option {
+    padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+    border: 0.125rem solid #db4437;
+    color: #db4437;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.4s ease;
+
+    color: #db4437;
+    font-size: 1rem;
+    font-weight: 600;
+
+    svg {
+      transition: all 0.4s ease;
+    }
+
+    &:hover {
+      background-color: #db4437;
+      color: #f9f9f9;
+
+      svg {
+        fill: #f9f9f9;
+      }
+    }
+  }
+
+  &.visible {
+    visibility: visible !important;
+    position: absolute;
+    opacity: 1;
+  }
+}

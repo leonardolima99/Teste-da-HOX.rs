@@ -8,12 +8,15 @@ interface Props {
   ariaLabel: string;
   color?: "primary" | "secondary";
   type: "button" | "submit";
+  size: "small" | "large";
 }
 
-export function Button({ children, ariaLabel, onClick, type }: Props) {
+export function Button({ children, ariaLabel, onClick, type, size }: Props) {
   return (
     <button
-      className={styles.button}
+      className={
+        styles.button + " " + (size === "small" ? styles.small : styles.large)
+      }
       aria-label={ariaLabel}
       onClick={(e: FormEvent) => {
         e.preventDefault();
