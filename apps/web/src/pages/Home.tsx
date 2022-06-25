@@ -59,7 +59,7 @@ export function Home() {
   }, [isOpen]);
 
   useEffect(() => {
-    dispatch({ type: sagaActions.FETCH_PRODUCTS_SAGA, payload: url });
+    dispatch({ type: sagaActions.FETCH_PRODUCTS_SAGA, payload: { url } });
   }, []);
 
   return (

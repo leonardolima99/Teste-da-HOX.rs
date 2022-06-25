@@ -25,9 +25,13 @@ export const productsSlice = createSlice({
     getAllProducts: (state, action) => {
       state.value = action.payload;
     },
+    handleRemoveProductOfList: (state, action) => {
+      state.value = state.value.filter((item) => item.id !== action.payload);
+    },
   },
 });
 
-export const { getAllProducts } = productsSlice.actions;
+export const { getAllProducts, handleRemoveProductOfList } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;
