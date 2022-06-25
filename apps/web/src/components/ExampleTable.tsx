@@ -90,14 +90,17 @@ export function ExampleTable({ columns, data }: Props) {
                         </button>
                         <button
                           className={global.btnIcon}
-                          onClick={() => {
-                            dispatch({
-                              type: sagaActions.DELETE_PRODUCTS_SAGA,
-                              payload: {
-                                url: `${api_url}/products`,
-                                params: { id: cell.row.original.id },
-                              },
-                            });
+                          onClick={(e) => {
+                            if (!e.currentTarget.disabled) {
+                              dispatch({
+                                type: sagaActions.DELETE_PRODUCTS_SAGA,
+                                payload: {
+                                  url: `${api_url}/products`,
+                                  params: { id: cell.row.original.id },
+                                },
+                              });
+                              e.currentTarget.disabled = true;
+                            }
                           }}
                         >
                           <svg

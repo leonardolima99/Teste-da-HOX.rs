@@ -55,14 +55,12 @@ function userAuth({ email, password }: UserData) {
     email !== "teste@mail.com" ||
     password !== "1234"
   ) {
-    console.log(123);
-
     setTimeout(() => {
       toast.update(toastId.current, {
         type: toast.TYPE.ERROR,
         isLoading: false,
         delay: 100,
-        autoClose: 5000,
+        autoClose: 2000,
         closeOnClick: true,
         closeButton: true,
         render: "Usuário ou senha inválidos.",
@@ -74,7 +72,7 @@ function userAuth({ email, password }: UserData) {
       toast.update(toastId.current, {
         type: toast.TYPE.SUCCESS,
         isLoading: false,
-        autoClose: 5000,
+        autoClose: 2000,
         closeOnClick: true,
         closeButton: true,
         render: "Acesso permitido.",
@@ -114,18 +112,18 @@ export function* deleteProductsSaga(action: DataAction) {
   toastId1.current = toast.loading("Deletando dado...");
 
   try {
-    yield put(handleRemoveProductOfList(action.payload.params?.id));
-
     yield call(callAPI, {
       url: `${action.payload.url}/${action.payload.params?.id}`,
       method: "DELETE",
     });
 
+    yield put(handleRemoveProductOfList(action.payload.params?.id));
+
     toast.update(toastId1.current, {
       type: toast.TYPE.SUCCESS,
       isLoading: false,
       delay: 100,
-      autoClose: 5000,
+      autoClose: 2000,
       closeOnClick: true,
       closeButton: true,
       render: "Deletado.",
@@ -135,10 +133,10 @@ export function* deleteProductsSaga(action: DataAction) {
       type: toast.TYPE.ERROR,
       isLoading: false,
       delay: 100,
-      autoClose: 5000,
+      autoClose: 2000,
       closeOnClick: true,
       closeButton: true,
-      render: "Dado não existe.",
+      render: "Algo deu errado.",
     });
   }
 }
@@ -155,7 +153,7 @@ export function* fetchProductsSaga(action: DataAction) {
       type: toast.TYPE.SUCCESS,
       isLoading: false,
       delay: 100,
-      autoClose: 5000,
+      autoClose: 2000,
       closeOnClick: true,
       closeButton: true,
       render: "Dados encontrados.",
@@ -167,7 +165,7 @@ export function* fetchProductsSaga(action: DataAction) {
       type: toast.TYPE.ERROR,
       isLoading: false,
       delay: 100,
-      autoClose: 5000,
+      autoClose: 2000,
       closeOnClick: true,
       closeButton: true,
       render: "Algo deu errado.",
