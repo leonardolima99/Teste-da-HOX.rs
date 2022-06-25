@@ -100,7 +100,7 @@ export function ExampleTable({ columns, data }: Props) {
                   );
                 }
 
-                if (
+                /* if (
                   cell.column.id === "manufactureDate" ||
                   cell.column.id === "expirationDate"
                 ) {
@@ -121,7 +121,7 @@ export function ExampleTable({ columns, data }: Props) {
                       </span>
                     </td>
                   );
-                }
+                } */
                 return (
                   <td data-title={cell.column.Header} {...cell.getCellProps()}>
                     <span
