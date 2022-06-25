@@ -55,11 +55,7 @@ export function Home() {
   });
 
   useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
-
-  useEffect(() => {
-    dispatch({ type: sagaActions.FETCH_PRODUCTS_SAGA, payload: url });
+    dispatch({ type: sagaActions.FETCH_PRODUCTS_SAGA, payload: { url } });
   }, []);
 
   return (

@@ -1,6 +1,8 @@
 import { useTable } from "react-table";
 
 import global from "@/styles/global.module.scss";
+import { sagaActions } from "@/redux/sagas/sagaActions";
+import { useDispatch } from "react-redux";
 
 type Props = {
   columns: any;
@@ -14,10 +16,13 @@ type Props = {
   }[];
 };
 
+const { VITE_API_URL: api_url } = import.meta.env; // Variable Environment
+
 export function ExampleTable({ columns, data }: Props) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
 
+  const dispatch = useDispatch();
   return (
     <table {...getTableProps()}>
       <thead>
@@ -33,14 +38,17 @@ export function ExampleTable({ columns, data }: Props) {
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+            <tr {...row.getRowProps()} key={row.original.id}>
               {row.cells.map((cell) => {
                 if (
                   !cell.row.original.perishable &&
                   cell.column.id === "expirationDate"
                 ) {
                   return (
-                    <td {...cell.getCellProps()}>
+                    <td
+                      {...cell.getCellProps()}
+                      key={`${cell.column.Header}_${cell.row.original.id}`}
+                    >
                       <span
                         className={global.span}
                         data-title={cell.column.Header}
@@ -56,6 +64,7 @@ export function ExampleTable({ columns, data }: Props) {
                     <td
                       data-title={cell.column.Header}
                       {...cell.getCellProps()}
+                      key={`${cell.column.Header}_${cell.row.original.id}`}
                     >
                       <span
                         className={global.span}
@@ -79,7 +88,21 @@ export function ExampleTable({ columns, data }: Props) {
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                           </svg>
                         </button>
-                        <button className={global.btnIcon}>
+                        <button
+                          className={global.btnIcon}
+                          onClick={(e) => {
+                            if (!e.currentTarget.disabled) {
+                              dispatch({
+                                type: sagaActions.DELETE_PRODUCTS_SAGA,
+                                payload: {
+                                  url: `${api_url}/products`,
+                                  params: { id: cell.row.original.id },
+                                },
+                              });
+                              e.currentTarget.disabled = true;
+                            }
+                          }}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -108,6 +131,8 @@ export function ExampleTable({ columns, data }: Props) {
                     <td
                       data-title={cell.column.Header}
                       {...cell.getCellProps()}
+
+                      key={`${cell.column.Header}_${cell.row.original.id}`}
                     >
                       <span
                         className={global.span}
