@@ -12,6 +12,7 @@ import { sagaActions } from "@/redux/sagas/sagaActions";
 import { Button } from "@/components/Button";
 import { ExampleTable } from "@/components/ExampleTable";
 import axios from "axios";
+import { Loading } from "@/components/Loading";
 
 const { VITE_API_URL: api_url } = import.meta.env; // Variable Environment
 
@@ -151,7 +152,13 @@ export function Home() {
             Novo produto
           </Button>
         </div>
-        <ExampleTable columns={columns} data={products} />
+        {products.length ? (
+          <ExampleTable columns={columns} data={products} />
+        ) : (
+          <div className={global.box}>
+            <Loading />
+          </div>
+        )}
       </main>
     </div>
   );

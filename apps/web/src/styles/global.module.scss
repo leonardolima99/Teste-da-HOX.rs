@@ -32,6 +32,10 @@ section {
   width: 100%;
   max-width: 70rem;
 }
+main {
+  display: flex;
+  flex-direction: column;
+}
 
 table {
   width: 100%; // min 780px
@@ -92,6 +96,14 @@ table {
 .between {
   display: flex;
   justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 250px;
+  padding: 130px;
 }
 
 @media screen and (max-width: 780px) {

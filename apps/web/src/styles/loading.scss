@@ -1,0 +1,18 @@
+.spinner {
+  width: 6rem;
+  height: 6rem;
+  border: 0.5rem solid transparent;
+  border-right: 0.5rem solid gray;
+  border-radius: 3rem;
+
+  animation: spin 1s linear infinite;
+
+  justify-self: center;
+  align-self: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
