@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useDropdownMenu from "react-accessible-dropdown-menu-hook";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 import global from "../styles/global.module.scss";
 import styles from "../styles/navbar.module.scss";
@@ -13,10 +15,12 @@ import { Button } from "@/components/Button";
 import { ExampleTable } from "@/components/ExampleTable";
 import axios from "axios";
 import { Loading } from "@/components/Loading";
+import { NewEditProduct } from "@/components/NewEditProduct";
 
 const { VITE_API_URL: api_url } = import.meta.env; // Variable Environment
 
 export function Home() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [url, setUrl] = useState<string>(`${api_url}/products`);
   const [data, setData] = useState([]);
 
@@ -54,6 +58,10 @@ export function Home() {
   const { buttonProps, itemProps, isOpen } = useDropdownMenu(1, {
     disableFocusFirstItemOnClick: true,
   });
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen((prevState) => !prevState);
+  };
 
   useEffect(() => {
     dispatch({ type: sagaActions.FETCH_PRODUCTS_SAGA, payload: { url } });
@@ -148,10 +156,31 @@ export function Home() {
             color="primary"
             ariaLabel="Novo produto"
             size="small"
+            onClick={toggleDrawer}
           >
             Novo produto
           </Button>
         </div>
+        <Drawer
+          open={isDrawerOpen}
+          onClose={toggleDrawer}
+          direction="right"
+          size="320px"
+        >
+          <div className="heading">
+            <h3>Novo produto</h3>
+            <Button
+              type="button"
+              color="primary"
+              ariaLabel="Botão fechar"
+              size="small"
+              onClick={toggleDrawer}
+            >
+              X
+            </Button>
+          </div>
+          <NewEditProduct />
+        </Drawer>
         {products.length ? (
           <ExampleTable columns={columns} data={products} />
         ) : (

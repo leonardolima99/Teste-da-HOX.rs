@@ -2579,6 +2579,11 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.1.0.tgz#61aaed3096d30eacf2a2127118b5b41387d32a67"
   integrity sha512-Fl7FuabXsJnV5Q1qIOQwx/sagGF18kogb4gpfcG4gjLBWO0WDiiz1ko/ExayuxE7InyQkBLkxRFG5oxY6Uu3Kg==
 
+react-modern-drawer@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-modern-drawer/-/react-modern-drawer-1.1.1.tgz#928bf03337c72294f89eceb39743127863e99f51"
+  integrity sha512-LU79xfQ6f+bINXOie6rUFfU8tFWYjv5zkF03gDVTA9nkECgZZVtTvkata+R0aIbEBI6c/UFdlc/6XLWDOiD1tA==
+
 react-redux@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.0.2.tgz#bc2a304bb21e79c6808e3e47c50fe1caf62f7aad"
