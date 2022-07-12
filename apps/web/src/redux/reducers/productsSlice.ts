@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export type ProductType = {
+  id: number;
+  name: string;
+  manufactureDate: string;
+  perishable: boolean;
+  expirationDate: string;
+  price: string;
+};
 export interface ProductsState {
-  value: {
-    id: number;
-    name: string;
-    manufactureDate: string;
-    perishable: boolean;
-    expirationDate: string;
-    price: string;
-  }[];
+  value: ProductType[];
 }
 
 const initialState: ProductsState = {

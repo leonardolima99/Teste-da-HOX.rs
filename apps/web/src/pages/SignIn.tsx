@@ -13,7 +13,7 @@ export function SignIn() {
   const dispatch = useDispatch();
 
   return (
-    <div className={global.signin}>
+    <div className={global.pageCenter}>
       <main>
         <h2>Área restrita</h2>
         <form

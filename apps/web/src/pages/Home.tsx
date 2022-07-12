@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useDropdownMenu from "react-accessible-dropdown-menu-hook";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 import global from "../styles/global.module.scss";
 import styles from "../styles/navbar.module.scss";

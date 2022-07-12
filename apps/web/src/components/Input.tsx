@@ -21,7 +21,7 @@ export function Input({
   return (
     <div className={styles.inputBox}>
       <label htmlFor={placeholder} className={styles.label}>
-        {placeholder}
+        {ariaLabel}
       </label>
       <input
         type={type}

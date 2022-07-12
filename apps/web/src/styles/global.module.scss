@@ -11,7 +11,7 @@
   padding: 0 2rem;
 }
 
-.signin {
+.page-center {
   background-color: #f0f7ee;
   min-height: 100vh;
   display: flex;
@@ -104,6 +104,21 @@ table {
   width: 100%;
   min-height: 250px;
   padding: 130px;
+}
+
+.heading-drawer {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.pt-4 {
+  padding-top: 4rem;
 }
 
 @media screen and (max-width: 780px) {
