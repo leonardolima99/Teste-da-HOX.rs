@@ -1,30 +1,46 @@
 import { ProductType } from "@/redux/reducers/productsSlice";
-import { useState } from "react";
-import { Input } from "./Input";
+import { useEffect, useState } from "react";
 
 import styles from "@/styles/form.module.scss";
+import global from "@/styles/global.module.scss";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 type Props = {
-  product?: ProductType;
+  action: "new" | "edit";
 };
+type Params = {
+  productId: number;
+};
+export function NewEditProduct({ action }: Props) {
+  const { productId } = useParams();
+  const id = productId as unknown as number;
+  const product = useSelector((state: RootState) =>
+    state.products.value.find((item) => item.id == id)
+  );
+  const [name, setName] = useState<string>("");
+  const [manufactureDate, setManufactureDate] = useState<string>("");
+  const [perishable, setPerishable] = useState<boolean>(false);
+  const [expirationDate, setExpirationDate] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
 
-export function NewEditProduct({ product }: Props) {
-  const [name, setName] = useState<string>(product?.name || "");
-  const [manufactureDate, setManufactureDate] = useState<string>(
-    product?.manufactureDate || ""
-  );
-  const [perishable, setPerishable] = useState<boolean>(
-    product?.perishable || false
-  );
-  const [expirationDate, setExpirationDate] = useState<string>(
-    product?.expirationDate || ""
-  );
-  const [price, setPrice] = useState<string>(product?.price || "");
+  useEffect(() => {
+    console.log(product);
+    if (product) {
+      setName(product.name);
+      setManufactureDate(product.manufactureDate);
+      setPerishable(product.perishable);
+      setExpirationDate(product.expirationDate);
+      setPrice(product.price);
+    }
+  }, [product]);
 
   return (
-    <>
+    <div className={global.page + " " + global.pt4}>
+      {action === "new" ? <h2>Novo Produto</h2> : <h2>Editar produto</h2>}
       <form
-        className={styles.form}
+        className={styles.form + " " + global.mt2}
         onSubmit={(e) => {
           e.preventDefault();
           /* dispatch({
@@ -62,37 +78,15 @@ export function NewEditProduct({ product }: Props) {
           />
         </div>
         <div className={styles.inputBox}>
-          <span className={styles.label}>É perecível?</span>
-          <div>
-            <label htmlFor="yes" className={styles.label}>
-              Sim
-            </label>
+          <label className={styles.switch}>
+            <span className={styles.label}>É perecível?</span>
             <input
-              type="radio"
-              className={styles.textInput}
-              name="perishable"
-              aria-label="perecível"
-              id="yes"
-              placeholder="input radio!!"
-              onClick={(e) => setPerishable((prevState) => !prevState)}
-              defaultChecked={perishable}
-              checked={perishable ? true : false}
+              type="checkbox"
+              onChange={(e) => setPerishable((prevState) => !prevState)}
+              checked={perishable}
             />
-
-            <label htmlFor="perishable" className={styles.label}>
-              Não
-            </label>
-            <input
-              type="radio"
-              className={styles.textInput}
-              name="perishable"
-              aria-label="perecível"
-              id="perishable"
-              placeholder="input radio!!"
-              onClick={(e) => setPerishable((prevState) => !prevState)}
-              checked={!perishable ? true : false}
-            />
-          </div>
+            {/*  <span className="slider round"></span> */}
+          </label>
         </div>
         {perishable ? (
           <div className={styles.inputBox}>
@@ -105,6 +99,7 @@ export function NewEditProduct({ product }: Props) {
               aria-label="data de vencimento"
               id="expirationDate"
               placeholder="21/12/2012"
+              datatype=""
               onChange={(e) => setExpirationDate(e.target.value)}
               value={expirationDate}
             />
@@ -116,7 +111,7 @@ export function NewEditProduct({ product }: Props) {
           </label>
           <input
             type="text"
-            className={styles.textInput}
+            className={styles.textInput + " " + styles.formSmall}
             aria-label="price"
             id="price"
             placeholder="R$ 32,90"
@@ -132,6 +127,6 @@ export function NewEditProduct({ product }: Props) {
           {product ? "Salvar" : "Adicionar"}
         </button>
       </form>
-    </>
+    </div>
   );
 }
